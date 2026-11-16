@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>George Wang — 重新认识你很高兴</title>
+  <meta name="description" content="你好，我是 George Wang。Conso 联合创始人兼首席客服，TON 增长实验室发起人。我想参与一个现象级应用的诞生。" />
+  <meta property="og:title" content="George Wang — 重新认识你很高兴" />
+  <meta property="og:description" content="一个人本来就可以有很多身份。你好，我是 George，姓 Wang。" />
+  <meta property="og:image" content="assets/hero.jpg" />
+  <link rel="icon" href="assets/avatar.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #16305a;
+      --ink: #1a2744;
+      --muted: #4a5a73;
+      --sky: #7ec8f0;
+      --sky-deep: #3e9ad6;
+      --cloud: #f4f8fd;
+      --paper: #f7fbff;
+      --gold: #f5c542;
+      --line: rgba(22, 48, 90, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans SC", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.8;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 28px;
+      background: transparent;
+      transition: background .3s, box-shadow .3s, color .3s;
+      color: var(--navy);
+    }
+    .nav.scrolled {
+      background: rgba(247, 251, 255, .92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--line);
+    }
+    .nav-logo {
+      font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+      font-size: 22px; font-weight: 600; letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; font-size: 14px; }
+    .nav-links a { text-decoration: none; opacity: .85; }
+    .nav-links a:hover { opacity: 1; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--navy); color: #fff !important;
+      padding: 8px 16px; border-radius: 999px;
+      text-decoration: none; font-size: 13px;
+    }
+    .btn:hover { opacity: .92; }
+    .btn-light {
+      background: #fff; color: var(--navy) !important;
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      color: var(--navy);
+      background: linear-gradient(180deg, #4aa4e0 0%, #6cbbea 28%, #9ed6f5 62%, #d7eefc 84%, #f7fbff 100%);
+    }
+    .sun {
+      position: absolute; top: 14%; right: 8%;
+      width: 108px; height: 108px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 42% 38%, #fffce0 0 28%, #ffe56a 48%, #ffd03a 100%);
+      box-shadow: 0 0 60px 18px rgba(255, 214, 80, .35);
+    }
+    .sun-rays {
+      position: absolute; top: calc(14% + 54px); right: calc(8% + 54px);
+      width: 0; height: 0; pointer-events: none;
+    }
+    .sun-rays span {
+      position: absolute; left: 0; top: 0;
+      width: 4px; height: 18px;
+      margin-left: -2px; margin-top: -80px;
+      background: #ffd24a;
+      border-radius: 2px;
+      transform-origin: 50% 80px;
+      opacity: .85;
+    }
+    .clouds-svg {
+      position: absolute; left: 0; right: 0; bottom: -2px;
+      width: 100%; height: 34%;
+      pointer-events: none; z-index: 1;
+    }
+    .hero-inner { position: relative; z-index: 2; padding: 120px 24px 160px; }
+    .hero h1 {
+      font-family: "Noto Serif SC", serif;
+      font-weight: 700;
+      font-size: clamp(36px, 7vw, 84px);
+      letter-spacing: .04em;
+      line-height: 1.25;
+    }
+    .hero h1 em {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    .hero p {
+      margin-top: 22px;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(18px, 2.6vw, 30px);
+      letter-spacing: .22em;
+    }
+    .scroll-hint {
+      position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%);
+      font-size: 12px; letter-spacing: .2em; color: var(--navy); opacity: .8; z-index: 2;
+    }
+
+    main { position: relative; }
+    .wrap { width: min(820px, calc(100% - 48px)); margin: 0 auto; }
+    .wide { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }
+
+    .intro {
+      padding: 96px 0 48px;
+    }
+    .portrait {
+      width: 96px; height: 96px; border-radius: 50%;
+      object-fit: cover; margin: 0 auto 28px;
+      box-shadow: 0 8px 30px rgba(22, 48, 90, .18);
+    }
+    .lead {
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.7;
+      text-align: center;
+      color: var(--navy);
+    }
+    .body-copy { margin-top: 36px; font-size: 17px; color: #2c3b55; }
+    .body-copy p + p { margin-top: 1.15em; }
+    .thanks { color: var(--muted); font-size: 15px; }
+
+    .section { padding: 64px 0; }
+    .section h2 {
+      font-family: "Noto Serif SC", serif;
+      font-size: 28px; color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .section .sub { color: var(--muted); margin-bottom: 36px; }
+
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--line);
+    }
+    .year { position: relative; margin-bottom: 36px; }
+    .year::before {
+      content: ""; position: absolute; left: -26px; top: 10px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--sky-deep); box-shadow: 0 0 0 4px #e8f4fc;
+    }
+    .year h3 {
+      font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+      font-size: 28px; color: var(--navy); line-height: 1.2;
+    }
+    .year p { margin-top: 8px; }
+
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .role {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px 22px 22px;
+      min-height: 180px;
+    }
+    .role h3 { font-family: "Noto Serif SC", serif; font-size: 20px; color: var(--navy); margin-bottom: 8px; }
+    .role p { font-size: 15px; color: var(--muted); }
+
+    .quote {
+      background: linear-gradient(180deg, #eaf6ff, #fff);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .quote p {
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(20px, 2.6vw, 26px);
+      color: var(--navy); line-height: 1.7;
+    }
+    .quote span { display: block; margin-top: 16px; font-size: 14px; color: var(--muted); letter-spacing: .18em; }
+
+    .cta { text-align: center; padding-bottom: 80px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+    .cta .btn { padding: 12px 20px; font-size: 15px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 24px 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--navy); }
+
+    @media (max-width: 800px) {
+      .nav-links a:not(.btn) { display: none; }
+      .roles { grid-template-columns: 1fr; }
+      .sun { width: 84px; height: 84px; top: 8%; right: 8%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="nav-logo" href="#top">George Wang</a>
+    <nav class="nav-links">
+      <a href="#story">关于</a>
+      <a href="#years">经历</a>
+      <a href="#roles">身份</a>
+      <a href="#connect">联系</a>
+      <a class="btn" href="https://x.com/Showy005" target="_blank" rel="noopener">X @Showy005</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="sun-rays" aria-hidden="true"><span style="transform:rotate(0deg)"></span><span style="transform:rotate(30deg)"></span><span style="transform:rotate(60deg)"></span><span style="transform:rotate(90deg)"></span><span style="transform:rotate(120deg)"></span><span style="transform:rotate(150deg)"></span><span style="transform:rotate(180deg)"></span><span style="transform:rotate(210deg)"></span><span style="transform:rotate(240deg)"></span><span style="transform:rotate(270deg)"></span><span style="transform:rotate(300deg)"></span><span style="transform:rotate(330deg)"></span></div>
+    <svg class="clouds-svg" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path fill="#eef7ff" d="M0,260 C120,210 200,180 320,200 C360,140 470,120 560,165 C640,100 780,110 860,175 C960,130 1100,150 1180,200 C1280,170 1380,190 1440,220 L1440,360 L0,360 Z"/>
+      <path fill="#f7fbff" d="M0,300 C80,250 180,230 280,255 C340,210 470,200 560,245 C650,200 760,210 850,250 C960,215 1100,230 1220,270 C1300,250 1380,260 1440,280 L1440,360 L0,360 Z"/>
+      <path fill="#ffffff" d="M0,330 C140,300 250,290 380,310 C480,280 620,285 730,315 C840,290 980,295 1100,325 C1220,305 1340,315 1440,335 L1440,360 L0,360 Z"/>
+    </svg>
+    <div class="hero-inner">
+      <h1>你好，我是 <em>George Wang</em></h1>
+      <p>重新认识你很高兴</p>
+    </div>
+    <div class="scroll-hint">下滑认识我</div>
+  </section>
+
+  <main>
+    <section class="intro" id="story">
+      <div class="wrap">
+        <img class="portrait" src="assets/avatar.jpg" alt="George Wang" />
+        <p class="lead">很多人搞不清楚，我到底是 KOL 还是项目方。<br />其实，一个人本来就可以有很多身份。</p>
+        <div class="body-copy">
+          <p>说实话，我也没想过会有这么多身份。一开始只是想好好做项目，顺带和我的 TON 开发者社区的开发者们一起研究增长。但很多事情做着做着，就变成了现在这样，蝴蝶效应吧。</p>
+          <p>身份多了其实挺累的。因为每天工作以外，还要为了活跃粉丝群交易、管理社群。需要的时候做了这件事，最后要注意力转移时，断舍离又成了一门学问。</p>
+          <p>好在 2023 年，我从 “CZ” 那里学到一招：以年为单位，更新熟人朋友圈。我认真想了这个方法有没有道理，最后认为有道理，所以照着学了，从中受益。我真心觉得从零开始适合大多数人。</p>
+          <p class="thanks">此处感谢大表哥助我悟道　<a href="https://x.com/cz_binance" target="_blank" rel="noopener">@cz_binance</a></p>
+          <p>所以现在的我，就是 2023 年我选择要成为的我。如果哪天我感觉偏离人生轨道了，可能我会突然停更，转去别的社交平台认识新朋友，大家也不用感到意外。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="years">
+      <div class="wrap">
+        <h2>这些年我做了什么</h2>
+        <p class="sub">从「悟道」开始，以年为单位更新自己。</p>
+        <div class="timeline">
+          <article class="year">
+            <h3>2023</h3>
+            <p>年底我想明白了两件事，决定归零，重新开始。第一，我再也做不了量化交易业务了。第二，对我而言，Web3 + 出海是未来十年的机会。</p>
+          </article>
+          <article class="year">
+            <h3>2024</h3>
+            <p>我创建了 TON 增长实验室。TON 大火的时候，也和朋友们一起做了几款小游戏。我们以 TikTok 种草和裂变玩法为主，搭起增长飞轮，用极低成本累计获得了 2500 万用户。社区也成了 TON 最大的华语开发者社区，我成了 TON 基金会在华语开发者群体中唯一推荐的增长专家。</p>
+          </article>
+          <article class="year">
+            <h3>2025</h3>
+            <p>TON 小游戏退潮，我和合伙人一起创立了 Conso App，深挖 Telegram 生态，看中的是频道、社群和即时通讯的内容价值。6 月，Conso 在海外上线内测。依靠过去积累的增长经验，我们用两个月把安装和激活用户从 0 做到 100 万，日活最高达到 10 万。</p>
+            <p>到了 10 月，我们内部评估：作为一个 MEME 社交交易平台，Conso 要从全球最大的市场里选一个做冷启动——美国，还是华语？我选了华语，于是开始运营 X，开始逐渐有朋友关注上我。</p>
+          </article>
+          <article class="year">
+            <h3>2026</h3>
+            <p>为了给 Conso 积累种子用户，我以 Conso 联合创始人和 MEME 交易博主的身份活跃在 X 和 Telegram，成了半个 KOL。在 Conso 研发阶段，我通过 X 种草为产品带来了 1.3 万名华语测试用户；自己的粉丝群也发展到了 6000 人。</p>
+          </article>
+        </div>
+        <div class="body-copy" style="margin-top:8px">
+          <p>我相信为快不破，只有增长才能解决企业发展问题。如果看我近几年的经历就不难发现，我一直把自己的事业放在首位。做的很多事情，都是为了事业，而非个人得失，也是在用自己擅长的「增长」方法，解决公司不同阶段的问题。</p>
+          <p>大多数时候，爱好都要给事业让路。所以，我把粉丝群交给了信得过、擅长聪明钱交易的朋友接手。因为我大量精力投入，会阻碍产品的增长工作，且粉丝群也已经发挥了它的使命价值。</p>
+          <p>但这不代表我做的每件事、说的每一句话，都只为 Conso 发声。作为个人，我在 X 上得罪过不少人，也怒斥过诋毁底层、诋毁女性的博主；我也会真心夸 FOMO 的产品做得好，哪怕这是在给竞品免费带流量。</p>
+          <p>相对于利益，我更希望自己永远用辩证思维看待人和事，不说违心的话，不做违心的事。Conso 如果不是一个好用、被需要的产品，我肯定希望市场能反馈真话。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roles">
+      <div class="wide">
+        <h2>你喜欢我哪个身份</h2>
+        <p class="sub">这些都是我愿意做、也觉得有意义的事，我会继续做下去。</p>
+        <div class="roles">
+          <article class="role">
+            <h3>Conso 首席客服</h3>
+            <p>Conso 联合创始人兼首席客服。想参与一个现象级应用的诞生，并让产品被真实需要。</p>
+          </article>
+          <article class="role">
+            <h3>增长实验室发起人</h3>
+            <p>在豚总增长实验室带头研究增长策略。从 TON 到 Telegram 生态，增长是我最擅长的方法。</p>
+          </article>
+          <article class="role">
+            <h3>MEME 笨蛋钱博主</h3>
+            <p>也是一个最近连亏三个月的 MEME 博主、群主。真诚交易，不说违心的话。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="quote">
+          <p>我想参与一个现象级应用的诞生。<br />很高兴重新认识你，我是 George，姓 Wang。</p>
+          <span>人生理想一直没变</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="connect">
+      <div class="wrap">
+        <h2 style="font-family:'Noto Serif SC',serif;color:var(--navy);font-size:28px;">一起走一段</h2>
+        <p class="sub" style="margin:10px 0 0">下载产品、一起研究增长，或进群交流 MEME 文化。</p>
+        <div class="cta-row">
+          <a class="btn" href="https://www.conso.tg" target="_blank" rel="noopener">下载 Conso，支持我的事业</a>
+          <a class="btn btn-light" href="https://conso.tg/c/cgrowth" target="_blank" rel="noopener">一起研究增长</a>
+          <a class="btn btn-light" href="https://conso.tg/c/george" target="_blank" rel="noopener">一起打狗，交流 MEME</a>
+          <a class="btn btn-light" href="https://x.com/Showy005" target="_blank" rel="noopener">在 X 上找我</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>George Wang　·　Co-Founder &amp; Chief Customer Service Officer, <a href="https://www.conso.tg" target="_blank" rel="noopener">Conso</a></p>
+    <p style="margin-top:6px">文案来自 <a href="https://x.com/Showy005/status/2121996106691490146" target="_blank" rel="noopener">2026 年 11 月 15 日的自我介绍</a></p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById("nav");
+    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+    const params = new URLSearchParams(location.search);
+    if (params.has("y")) {
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, Number(params.get("y")) || 0);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  </script>
+</body>
+</html>
